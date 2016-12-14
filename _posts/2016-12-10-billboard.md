@@ -34,12 +34,12 @@ Here's the rough order of steps I followed in arriving at answers to these quest
 
 The dataset contains 317 tracks by various artists/groups, with some artists/groups having multiple tracks. The track length, genre, date of entry, date of peak ranking, and weekly ranks for the 76 weeks since entry, are also included for each track. Rock seems to be predominant genre in this dataset. I added columns for number of weeks each track spent in top 100 during the 76 weeks, in addition to others to aid in analysis. Here's a snippet of the code I used to add this column:
 
-    # Find out the number of weeks each track has been on the billboard, and average rating for each track
+'''# Find out the number of weeks each track has been on the billboard, and average rating for each track'''
     col_list = bb_100.columns
     col_list = col_list[7:-2]
     data_weeks = bb_100[col_list]
 
-    Add these quantities to the dataframe
+    # Add these quantities to the dataframe
     bb_100["num_of_weeks"] = data_weeks.count(axis=1)
     bb_100["av_ranking"] = data_weeks.mean(axis=1)
 
