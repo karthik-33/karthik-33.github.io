@@ -67,7 +67,7 @@ Creed also took the top spot in total number of weeks spent in the top 100. His 
 
 #### Statistical tests
 
-Given the genre dependent trends observed above, I decided to run some t-tests on the number of weeks spent by Rock, Country and Rap tracks. None of these variables were not normally distributed, but I assumed that their means would be normally distributed by the Central Limit Theorem, given that the number of samples (tracks) for each of these categories exceeds the recommended 30-40. The variances of all these variables were fairly different, so I used Welch's t-tests for each pairwise comparison instead of Student t-tests.
+Given the genre dependent trends observed above, I decided to run some t-tests on the number of weeks spent by Rock, Country and Rap tracks. None of these variables were normally distributed, but I assumed that their means would be normally distributed by the Central Limit Theorem, given that the number of samples (tracks) for each of these categories exceeds the recommended 30-40. The variances of all these variables were fairly different, so I used Welch's t-tests for each pairwise comparison instead of Student t-tests.
 
 Here's the code I used to run the Welch's t-test:
 
