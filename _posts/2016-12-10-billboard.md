@@ -34,12 +34,12 @@ Here's the rough order of steps I followed in arriving at answers to these quest
 
 The dataset contains 317 tracks by various artists/groups, with some artists/groups having multiple tracks. The track length, genre, date of entry, date of peak ranking, and weekly ranks for the 76 weeks since entry, are also included for each track. Rock seems to be predominant genre in this dataset. I added columns for number of weeks each track spent in top 100 during the 76 weeks, in addition to others to aid in analysis. Here's a snippet of the code I used to add this column:
 
- # Find out the number of weeks each track has been on the billboard, and average rating for each track
+    # Find out the number of weeks each track has been on the billboard, and average rating for each track
     col_list = bb_100.columns
     col_list = col_list[7:-2]
     data_weeks = bb_100[col_list]
 
- # Add these quantities to the dataframe
+    # Add these quantities to the dataframe
     bb_100["num_of_weeks"] = data_weeks.count(axis=1)
     bb_100["av_ranking"] = data_weeks.mean(axis=1)
 
@@ -49,7 +49,7 @@ The dataset contains 317 tracks by various artists/groups, with some artists/gro
 
 Higher, by Creed, spent the most time in the top 100 at 57 weeks, followed by Amazed (by Lonestar), Breathe (Faith Hill), Kryptonite (by 3 Doors Down) and Wide Open (by Creed again).
 
-<img src="https://karthik-33.github.io/img/Weeksbytrack.png" height="200" width="350">
+<img src="https://karthik-33.github.io/img/Weeksbytrack.png" height="300" width="500">
 
 Creed also took the top spot in total number of weeks spent in the top 100. His tracks spent a total of 104 weeks. The next highest was Lonestar at 95 weeks, followed by Destiny's Child at 91 weeks.
 
@@ -59,11 +59,11 @@ Creed also took the top spot in total number of weeks spent in the top 100. His 
 
 2) While it looked like tracks that entered the top 100 in Q2 and Q3 of 1999 seem to have stayed longer in the top 100, very few tracks entered the billboard during that period (<5 out of 317 total). We could explore this further if more samples from that time period were available
 
-<img src="https://karthik-33.github.io/img/Weeksbydate.png" height="200" width="350">
+<img src="https://karthik-33.github.io/img/Weeksbydate.png" height="300" width="500">
 
 3) The average time spent in the top 100 seems to be genre dependent, but most genres did not have enough tracks (samples). It may be interesting to explore whether average number of weeks for Rock is significantly different than Country or Rap, all of which had enough samples to make statistical testing and drawing conclusions possible.
 
-<img src="https://karthik-33.github.io/img/Weeksbygenre.png" height="300" width="350">
+<img src="https://karthik-33.github.io/img/Weeksbygenre.png" height="400" width="500">
 
 #### Statistical tests
 
@@ -71,12 +71,12 @@ Given the genre dependent trends observed above, I decided to run some t-tests o
 
 Here's the code I used to run the Welch's t-test:
 
- # Create arrays with number of weeks data for each genre of interest
+    # Create arrays with number of weeks data for each genre of interest
     rock = bb_100[bb_100["genre"] == "Rock"]["num_of_weeks"]
     country = bb_100[bb_100["genre"] == "Country"]["num_of_weeks"]
     rap = bb_100[bb_100["genre"] == "Rap"]["num_of_weeks"]
 
- # Run Welch's t-test
+    # Run Welch's t-test
     t_rock_country = stats.ttest_ind(rock, country, equal_var=False, nan_policy='omit')
     t_rock_rap = stats.ttest_ind(rock, rap, equal_var=False, nan_policy='omit')
     t_country_rap = stats.ttest_ind(country, rap, equal_var=False, nan_policy='omit')
