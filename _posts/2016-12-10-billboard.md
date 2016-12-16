@@ -49,7 +49,7 @@ The dataset contains 317 tracks by various artists/groups, with some artists/gro
 
 Higher, by Creed, spent the most time in the top 100 at 57 weeks, followed by Amazed (by Lonestar), Breathe (Faith Hill), Kryptonite (by 3 Doors Down) and Wide Open (by Creed again).
 
-<img src="https://karthik-33.github.io/img/Weeksbytrack.png" height="400" width="500">
+<img src="https://karthik-33.github.io/img/Weeksbytrack.png" height="400" width="600">
 
 Creed also took the top spot in total number of weeks spent in the top 100. His tracks spent a total of 104 weeks. The next highest was Lonestar at 95 weeks, followed by Destiny's Child at 91 weeks.
 
@@ -59,11 +59,11 @@ Creed also took the top spot in total number of weeks spent in the top 100. His 
 
 2) While it looked like tracks that entered the top 100 in Q2 and Q3 of 1999 seem to have stayed longer in the top 100, very few tracks entered the billboard during that period (<5 out of 317 total). We could explore this further if more samples from that time period were available
 
-<img src="https://karthik-33.github.io/img/Weeksbydate.png" height="400" width="500">
+<img src="https://karthik-33.github.io/img/Weeksbydate.png" height="400" width="600">
 
 3) The average time spent in the top 100 seems to be genre dependent, but most genres did not have enough tracks (samples). It may be interesting to explore whether average number of weeks for Rock is significantly different than Country or Rap, all of which had enough samples to make statistical testing and drawing conclusions possible.
 
-<img src="https://karthik-33.github.io/img/Weeksbygenre.png" height="400" width="500">
+<img src="https://karthik-33.github.io/img/Weeksbygenre.png" height="500" width="500">
 
 #### Statistical tests
 
