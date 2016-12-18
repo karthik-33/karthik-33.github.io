@@ -93,11 +93,11 @@ print("R2_model_train: {}, R2_cv: {}".format(R2_model, R2_cv_scores))
 print("rmse_model_train: {}, rmse_cv: {}".format(rmse_model, rmse_cv))
 ```
 
-> **[ 0.92502374  0.9740132   0.85043665  0.96179457  0.92945303  0.97281101]**
+> **[ 0.925  0.974   0.850  0.961  0.929  0.972]**
 
-> **R2_model_train: 0.9621057366839447, R2_cv: 0.9355886993666567**
+> **R2_model_train: 0.962, R2_cv: 0.935**
 
-> **rmse_model_train: 9429.301841235469, rmse_cv: 9635.37570585619**
+> **rmse_model_train: 9429.3, rmse_cv: 9635.3**
 
 
 This simple model performed quite well on the training data, and was predicted to perform well on new data as well (R2_cv = 0.935, only marginally less than R2_train of 0.962). Let's see how the model performs on the test set.
@@ -115,7 +115,7 @@ R2_test = metrics.r2_score(ys_test, pred1)
 rmse_test = (metrics.mean_squared_error(ys_test, pred1))**0.5
 print("R2_test: {}, RMSE_test: {}".format(R2_test, rmse_test))
 ```
-> **R2_test: 0.9735533830536662, RMSE_test: 10889.13208879274**
+> **R2_test: 0.973, RMSE_test: 10889.1**
 
 
 <img src="https://karthik-33.github.io/img/Testfit.png" width="600" height="400">
