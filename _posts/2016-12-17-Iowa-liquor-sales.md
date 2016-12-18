@@ -66,13 +66,13 @@ Here are a couple of observations from the cleaned dataset.
 2. 2015 Q1 sales is highly correlated with 2015 total sales ... Q1 may be a good predictor, especially since we have 2016 Q1 data as well in the dataset.
 
 ###### Distribution of Total 2015 sales; skewed positive. Some outliers, but we first want to check how the model performs without removing outliers
-<img src="https://karthik-33.github.io/img/Totalsaleshist.png" width=600 height=400>
+<img src="https://karthik-33.github.io/img/Totalsaleshist.png" width="600" height="400">
 
 ###### Total 2015 sales vs Total 2015 Q1 sales (all in dollars)
-<img src="https://karthik-33.github.io/img/TotalsalesbyQ1.png" width=600 height=400>
+<img src="https://karthik-33.github.io/img/TotalsalesbyQ1.png" width="600" height="400">
 
 ###### Total 2015 sales vs Average margin per transaction (all in dollars)
-<img src="https://karthik-33.github.io/img/Totalsalesbymargin.png" width=600 height=400>
+<img src="https://karthik-33.github.io/img/Totalsalesbymargin.png" width="600" height="400">
 
 #### (5) Model building
 
@@ -91,12 +91,14 @@ rmse_cv = (metrics.mean_squared_error(ys_train, predcv))**0.5
 
 print("R2_model_train: {}, R2_cv: {}".format(R2_model, R2_cv_scores))
 print("rmse_model_train: {}, rmse_cv: {}".format(rmse_model, rmse_cv))
-
-
-  [ 0.92502374  0.9740132   0.85043665  0.96179457  0.92945303  0.97281101]
-  R2_model_train: 0.9621057366839447, R2_cv: 0.9355886993666567
-  rmse_model_train: 9429.301841235469, rmse_cv: 9635.37570585619
 ```
+
+> **[ 0.92502374  0.9740132   0.85043665  0.96179457  0.92945303  0.97281101]**
+
+> **R2_model_train: 0.9621057366839447, R2_cv: 0.9355886993666567**
+
+> **rmse_model_train: 9429.301841235469, rmse_cv: 9635.37570585619**
+
 
 This simple model performed quite well on the training data, and was predicted to perform well on new data as well (R2_cv = 0.935, only marginally less than R2_train of 0.962). Let's see how the model performs on the test set.
 
@@ -112,11 +114,11 @@ pred1 = pred1.reshape(-1,1)
 R2_test = metrics.r2_score(ys_test, pred1)
 rmse_test = (metrics.mean_squared_error(ys_test, pred1))**0.5
 print("R2_test: {}, RMSE_test: {}".format(R2_test, rmse_test))
-
-  R2_test: 0.9735533830536662, RMSE_test: 10889.13208879274
 ```
+> **R2_test: 0.9735533830536662, RMSE_test: 10889.13208879274**
 
-<img src="https://karthik-33.github.io/img/Testfit.png" width=600 height=400>
+
+<img src="https://karthik-33.github.io/img/Testfit.png" width="600" height="400">
 
 The model explains 97.3% of the variability in the test set, even with the outliers retained. The model does not need any additional complexity, and it doesn't seem to be overfitting the data either. So let's use this to predict sales in 2016.
 
