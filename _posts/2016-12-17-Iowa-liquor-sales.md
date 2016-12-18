@@ -2,23 +2,23 @@
 layout: post
 title: Iowa liquor sales 2015-2016
 ---
-## Introduction
+### Introduction
 
 Iowa's government provides rich datasets on their Open Data website (https://data.iowa.gov). This week, as part of my Data Scince Immersive class at General assembly, I want to explore liquor sales in Iowa from establishments holding Class E liquor licenses, i.e. those that allow for the sale of liquor for off-premises consumption in original unopened containers. Examples of these include grocery, liquor and convenience stores.
 
 Let's pretend that the Iowa legislature's tax committee is considering liquor tax rate changes, and wants a report of 2015 liquor sales by county and projections for 2016. One could surmise that they are motivated by increasing revenues, promoting better health outcomes, etc.
 
-## Executive Summary
+### Executive Summary
 
 1. Overall sales are projected to go DOWN by 4.8% in 2016 ($25.74 million) compared to 2015 ($27.04 million)
 2. Wayne county is projected to have the biggest increase (+558%)
 3. Delaware county is projected to have the largest decrease (-64%)  
 
-## Objective
+### Objective
 
 Generate a model to predict total liquor sales by county in 2016, based on data from 2015 and Q1 2016. The model must predict new data with >90% accuracy
 
-## Methodology
+### Methodology
 
 Here's the rough order of steps I followed in arriving at answers to these questions
 
@@ -83,7 +83,6 @@ I built a linear regression model with cross validation using scikit-learn, with
 scores = cross_val_score(lm1, Xs_train, ys_train, cv = 6)
 predcv = cross_val_predict(lm1, Xs_train, ys_train, cv = 6)
 print(scores)
-
 R2_model = metrics.r2_score(ys_train, pred_model)
 R2_cv_scores = np.mean(scores)
 rmse_model = (metrics.mean_squared_error(ys_train, pred_model))**0.5
@@ -102,19 +101,6 @@ print("rmse_model_train: {}, rmse_cv: {}".format(rmse_model, rmse_cv))
 
 This simple model performed quite well on the training data, and was predicted to perform well on new data as well (R2_cv = 0.935, only marginally less than R2_train of 0.962). Let's see how the model performs on the test set.
 
-```
-# Predictions and scores on test set
-Xs_test = (X_test - np.mean(X_train))/np.std(X_train)
-ys_test = y_test
-Xs_test = Xs_test.reshape(-1,1)
-
-pred1 = lm1.predict(Xs_test)
-pred1 = pred1.reshape(-1,1)
-
-R2_test = metrics.r2_score(ys_test, pred1)
-rmse_test = (metrics.mean_squared_error(ys_test, pred1))**0.5
-print("R2_test: {}, RMSE_test: {}".format(R2_test, rmse_test))
-```
 > **R2_test: 0.973, RMSE_test: 10889.1**
 
 
@@ -132,6 +118,6 @@ Here are some results from the projections.
 2. Wayne county is projected to have the biggest increase (+558%)
 3. Delaware county is projected to have the largest decrease (-64%)
 
-## Discussion
+### Discussion
 
 Depending on what motivated the tax committee to study this topic, the state legislature may view this either as a negative sign ("sales are down, may need to lower rates just enough to increase sales and make up for lost revenues") or a good sign ("this may have a positive impact on health and social outcomes, we should consider taxing liquor more"). It may be interesting to explore which locations within the counties show big changes in 2016 Q1 sales, and whether particular categories of items are responsible for these changes. It may also be interesting to explore whether weather patterns or sociological/political changes correlate with the largest increases and decreases in certain counties.   
