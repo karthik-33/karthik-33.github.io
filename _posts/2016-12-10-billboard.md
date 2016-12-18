@@ -34,14 +34,16 @@ Here's the rough order of steps I followed in arriving at answers to these quest
 
 The dataset contains 317 tracks by various artists/groups, with some artists/groups having multiple tracks. The track length, genre, date of entry, date of peak ranking, and weekly ranks for the 76 weeks since entry, are also included for each track. Rock seems to be predominant genre in this dataset. I added columns for number of weeks each track spent in top 100 during the 76 weeks, in addition to others to aid in analysis. Here's a snippet of the code I used to add this column:
 
-    # Find out the number of weeks each track has been on the billboard, and average rating for each track
-    col_list = bb_100.columns
-    col_list = col_list[7:-2]
-    data_weeks = bb_100[col_list]
+```
+# Find out the number of weeks each track has been on the billboard, and average rating for each track
+col_list = bb_100.columns
+col_list = col_list[7:-2]
+data_weeks = bb_100[col_list]
 
-    # Add these quantities to the dataframe
-    bb_100["num_of_weeks"] = data_weeks.count(axis=1)
-    bb_100["av_ranking"] = data_weeks.mean(axis=1)
+# Add these quantities to the dataframe
+bb_100["num_of_weeks"] = data_weeks.count(axis=1)
+bb_100["av_ranking"] = data_weeks.mean(axis=1)
+```
 
 ## Results
 
@@ -71,15 +73,17 @@ Given the genre dependent trends observed above, I decided to run some t-tests o
 
 Here's the code I used to run the Welch's t-test:
 
-    # Create arrays with number of weeks data for each genre of interest
-    rock = bb_100[bb_100["genre"] == "Rock"]["num_of_weeks"]
-    country = bb_100[bb_100["genre"] == "Country"]["num_of_weeks"]
-    rap = bb_100[bb_100["genre"] == "Rap"]["num_of_weeks"]
+```
+# Create arrays with number of weeks data for each genre of interest
+rock = bb_100[bb_100["genre"] == "Rock"]["num_of_weeks"]
+country = bb_100[bb_100["genre"] == "Country"]["num_of_weeks"]
+rap = bb_100[bb_100["genre"] == "Rap"]["num_of_weeks"]
 
-    # Run Welch's t-test
-    t_rock_country = stats.ttest_ind(rock, country, equal_var=False, nan_policy='omit')
-    t_rock_rap = stats.ttest_ind(rock, rap, equal_var=False, nan_policy='omit')
-    t_country_rap = stats.ttest_ind(country, rap, equal_var=False, nan_policy='omit')
+# Run Welch's t-test
+t_rock_country = stats.ttest_ind(rock, country, equal_var=False, nan_policy='omit')
+t_rock_rap = stats.ttest_ind(rock, rap, equal_var=False, nan_policy='omit')
+t_country_rap = stats.ttest_ind(country, rap, equal_var=False, nan_policy='omit')
+```
 
 At a signifcance level of 0.05, the p-values for Rock vs Country (0.029) and Rock vs Rap (0.0025) were both <0.05, whereas it was 0.21 for Country vs Rap, implying that Rock tracks indeed performed better (stayed longer in top 100) than Country or Rap tracks (statistically speaking, one would only get this result by random chance less than 5% of the time, so we can reject the null hypothesis). Country and Rap tracks performed similarly.  
 
