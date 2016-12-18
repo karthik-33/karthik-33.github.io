@@ -20,7 +20,8 @@ Generate a model to predict total liquor sales by county in 2016, based on data 
 
 ## Methodology
 
-Here's the rough order of steps I followed in arriving at answers to these questions:
+Here's the rough order of steps I followed in arriving at answers to these questions
+
 1. Acquire the data
 2. Data exploration and cleaning
 3. Data mining (and additional cleaning as needed)
@@ -32,7 +33,8 @@ Here's the rough order of steps I followed in arriving at answers to these quest
 
 The dataset contains individual transactions from each store with a class E liquor license in the state of Iowa, for each category of liquor item sold. A reduced dataset was acquired from the Iowa government website (as a .csv file) in order to minimize potential computation issues, and only contains 10% of the full data. This reduced dataset contains ~270,000 transactions from 1161 stores across all of Iowa's 99 counties, including date of transaction, item description, quantity sold (in volume and number), cost and price per bottle, and sale in dollars. The transactions are from the beginning of 2015, through the end of March 2016, i.e. Q1 2016.
 
-Here are a couple of aspects of the dataset that needed cleaning:
+Here are a couple of aspects of the dataset that needed cleaning
+
 1. All monetary quantities were converted to float to enable calculations
 2. Dates were converted to datetime format
 3. NA values were removed
@@ -58,7 +60,8 @@ df = df[df["Store Number"].isin(good_stores)]
 
 #### (4) Data visualization and correlations
 
-Here are a couple of observations from the cleaned dataset:
+Here are a couple of observations from the cleaned dataset
+
 1. Average sale or margin per transaction, average price per L per transaction, and average volume per transaction all have low correlation with 2015 total sales
 2. 2015 Q1 sales is highly correlated with 2015 total sales ... Q1 may be a good predictor, especially since we have 2016 Q1 data as well in the dataset.
 
@@ -108,7 +111,6 @@ pred1 = pred1.reshape(-1,1)
 
 R2_test = metrics.r2_score(ys_test, pred1)
 rmse_test = (metrics.mean_squared_error(ys_test, pred1))**0.5
-
 print("R2_test: {}, RMSE_test: {}".format(R2_test, rmse_test))
 
   R2_test: 0.9735533830536662, RMSE_test: 10889.13208879274
@@ -120,7 +122,10 @@ The model explains 97.3% of the variability in the test set, even with the outli
 
 #### (6) 2016 projections and conclusions
 
-Using the model generated above, I used 2016 Q1 sales to predict 2016 total sales. Here are some take-aways:
+Using the model generated above, I used 2016 Q1 sales to predict 2016 total sales.
+
+Here are some take-aways
+
 1. Overall sales are projected to go DOWN by 4.8% in 2016 ($25.74 million) compared to 2015 ($27.04 million)
 2. Wayne county is projected to have the biggest increase (+558%)
 3. Delaware county is projected to have the largest decrease (-64%)
