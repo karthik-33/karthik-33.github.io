@@ -60,7 +60,7 @@ df = df[df["Store Number"].isin(good_stores)]
 
 #### (4) Data visualization and correlations
 
-Here are a couple of observations from the cleaned dataset
+Here are a couple of observations from the cleaned dataset.
 
 1. Average sale or margin per transaction, average price per L per transaction, and average volume per transaction all have low correlation with 2015 total sales
 2. 2015 Q1 sales is highly correlated with 2015 total sales ... Q1 may be a good predictor, especially since we have 2016 Q1 data as well in the dataset.
@@ -124,7 +124,7 @@ The model explains 97.3% of the variability in the test set, even with the outli
 
 Using the model generated above, I used 2016 Q1 sales to predict 2016 total sales.
 
-Here are some take-aways
+Here are some results from the projections.
 
 1. Overall sales are projected to go DOWN by 4.8% in 2016 ($25.74 million) compared to 2015 ($27.04 million)
 2. Wayne county is projected to have the biggest increase (+558%)
