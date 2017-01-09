@@ -90,7 +90,7 @@ The numerical features ("age", "fare", "SibSp" and "Parch") were all standardize
 
 ### (4, 5) Model building and optimization
 
-####### (A) Logistic regression
+###### (A) Logistic regression
 The first step was to split the dataset (which is the cleaned version of "train" table from the db, with the features chosen above) into training and test sets. (I only realized later that a separate "test" table was available from the database as well).
 
 ```
@@ -192,7 +192,7 @@ As another test case, the model was re-optimized using average precision as the 
 
 *There was almost no change in the results.*
 
-**Confusion matrix (LR, 0.5 threshold, average_precision)**
+**Confusion matrix and Precision/Recall curve (LR, 0.5 threshold, average_precision)**
 
 ```
             0 Pred	1 Pred
