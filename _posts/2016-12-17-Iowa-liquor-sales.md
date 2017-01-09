@@ -4,7 +4,7 @@ title: Iowa liquor sales 2015-2016
 ---
 ### Introduction
 
-Iowa's government provides rich datasets on their Open Data website (https://data.iowa.gov). This week, as part of my Data Scince Immersive class at General assembly, I want to explore liquor sales in Iowa from establishments holding Class E liquor licenses, i.e. those that allow for the sale of liquor for off-premises consumption in original unopened containers. Examples of these include grocery, liquor and convenience stores.
+Iowa's government provides rich datasets on their Open Data website (https://data.iowa.gov). This week, as part of my Data Science Immersive class at General assembly, I want to explore liquor sales in Iowa from establishments holding Class E liquor licenses, i.e. those that allow for the sale of liquor for off-premises consumption in original unopened containers. Examples of these include grocery, liquor and convenience stores.
 
 Let's pretend that the Iowa legislature's tax committee is considering liquor tax rate changes, and wants a report of 2015 liquor sales by county and projections for 2016. One could surmise that they are motivated by increasing revenues, promoting better health outcomes, etc.
 
