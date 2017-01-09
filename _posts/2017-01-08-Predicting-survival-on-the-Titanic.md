@@ -4,7 +4,7 @@ title: Predicting survival on the Titanic
 ---
 ### Introduction
 
-I will explore a dataset about various characteristics of the passengers on the ill-fated Titanic this week. A more comprehensive description of this dataset is available at https://www.kaggle.com/c/titanic and https://www.kaggle.com/c/titanic/data.
+I will explore a dataset about various characteristics of the passengers on the ill-fated Titanic this week. A more comprehensive description of this dataset is available at [link](https://www.kaggle.com/c/titanic "Titanic Competition") and [link](https://www.kaggle.com/c/titanic/data "Titanic Data Description").
 
 ### Objective
 There are 2 main goals of this study:
@@ -83,7 +83,7 @@ The dataframe was exported into Tableau for visualization. Here are some observa
 
 **Passengers with small families or those who were single (family size = "parch" + "sibsp") had a higher survival rate than people with larger families**
 
-<img src = "../img/Family.png" width = "600" height = "400">
+<img src = "../img/Family.png" width = "550" height = "400">
 
 ### (3) Data cleaning
 The numerical features ("age", "fare", "SibSp" and "Parch") were all standardized (*sklearn.preprocessing.scale*), and null values were removed. The categorical features ("Pclass", "Embarked", "Sex") were converted to dummy features (*pd.get_dummies*). Other categoricals like "PassengerId", "Name" and "Cabin" were presumed to not contain any additional useful information for model building, and were ignored. A new dataframe "Xt" with the cleaned numerical and categorical data was assembled, and the labels (1 = Survived, 0 = Not survived) were stored in a separate dataframe "y".
@@ -132,22 +132,22 @@ Next, the performance of the model on the test set was assessed using various to
 
 *The model is better at predicting "not survived" (0) than "survived" (1). Baseline accuracy for "survived" class is ~38%, and model predicts ~72%.*
 
-```python
-                precision    recall  f1-score  support
-          0       0.79      0.84      0.82       165
-          1       0.72      0.65      0.68       103
-avg / total       0.77      0.77      0.77       268
-```
+|Label      |precision    |recall  |f1-score  |support|
+|:---:|:---:|:---:|:---:|:---:|
+|**0**|       0.79|      0.84|      0.82|       165|
+|**1**|       0.72|      0.65|      0.68|       103|
+|**avg / total**|       0.77|      0.77|      0.77|       268|
+
 
 **Confusion matrix (LR, 0.5 threshold, accuracy)**
 
 *The overall accuracy of the model (139+67)/(139+67+26+36) is 76.8%*
 
-```python
-              0 Pred	 1 Pred
-0 Actual	139	    26
-1 Actual	36	    67
-```
+| |0 Pred|	 1 Pred|
+|:---:|:---:|:---:|
+|**0 Actual**|	139|	    26|
+|**1 Actual**|	36|	    67|
+
 
 **ROC curve (LR)**
 
@@ -178,11 +178,11 @@ y_pred_90 = [1 if y_prob[i][1] >= 0.9 else 0 for i in range(len(y_prob))]
 pd.DataFrame(data = confusion_matrix(y_test, y_pred_90), index = ["0 Actu", "1 Actu"], columns = ["0 Pred", "1 Pred"])
 ```
 
-```python
-              0 Pred	 1 Pred
-0 Actual	164	    1
-1 Actual	82	    21
-```
+| |0 Pred|	 1 Pred|
+|:---:|:---:|:---:|
+|**0 Actual**|	164|	    1|
+|**1 Actual**|	82|	    21|
+
 
 Next, the logistic regression model was optimized using GridSearchCV to find the optimal penalty ("L1" or "L2) and regularization hyperparameter C.
 
@@ -194,11 +194,11 @@ As another test case, the model was re-optimized using average precision as the 
 
 **Confusion matrix and Precision/Recall curve (LR, 0.5 threshold, average_precision)**
 
-```python
-            0 Pred	1 Pred
-0 Actual	138	   27
-1 Actual	36	   67
-```
+| |0 Pred|	 1 Pred|
+|:---:|:---:|:---:|
+|**0 Actual**|	138|	    27|
+|**1 Actual**|	36|	    67|
+
 
 <img src="../img/PR.png" width = "600" height = "400">
 
@@ -211,11 +211,11 @@ An optimized kNN model was also built and assessed using the same steps as above
 
 **Confusion matrix (kNN)**
 
-```python
-              0 Pred	1 Pred
-0 Actual	143	  22
-1 Actual	33	  70
-```
+| |0 Pred|	 1 Pred|
+|:---:|:---:|:---:|
+|**0 Actual**|	143|	    22|
+|**1 Actual**|	33|	    70|
+
 
 **ROC curve (kNN)**
 
