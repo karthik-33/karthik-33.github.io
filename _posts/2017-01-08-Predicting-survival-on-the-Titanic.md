@@ -79,7 +79,7 @@ The dataframe was exported into Tableau for visualization. Here are some observa
 
 **Females had a higher survival rate**
 
-<img src = "../img/Sex.png" width = "600" height = "400">
+<img src = "../img/Sex.png" width = "550" height = "400">
 
 **Passengers with small families or those who were single (family size = "parch" + "sibsp") had a higher survival rate than people with larger families**
 
@@ -90,7 +90,7 @@ The numerical features ("age", "fare", "SibSp" and "Parch") were all standardize
 
 ### (4, 5) Model building and optimization
 
-###### (A) Logistic regression
+####### (A) Logistic regression
 The first step was to split the dataset (which is the cleaned version of "train" table from the db, with the features chosen above) into training and test sets. (I only realized later that a separate "test" table was available from the database as well).
 
 ```
@@ -144,8 +144,8 @@ avg / total       0.77      0.77      0.77       268
 *The overall accuracy of the model (139+67)/(139+67+26+36) is 76.8%*
 
 ```
-         0 Pred	 1 Pred
-0 Actual	139	   26
+              0 Pred	 1 Pred
+0 Actual	139	    26
 1 Actual	36	    67
 ```
 
@@ -179,8 +179,8 @@ pd.DataFrame(data = confusion_matrix(y_test, y_pred_90), index = ["0 Actu", "1 A
 ```
 
 ```
-         0 Pred	 1 Pred
-0 Actual	164	   1
+              0 Pred	 1 Pred
+0 Actual	164	    1
 1 Actual	82	    21
 ```
 
@@ -195,14 +195,14 @@ As another test case, the model was re-optimized using average precision as the 
 **Confusion matrix (LR, 0.5 threshold, average_precision)**
 
 ```
-          0 Pred	1 Pred
-0 Actual	138	  27
+            0 Pred	1 Pred
+0 Actual	138	   27
 1 Actual	36	   67
 ```
 
 <img src="../img/PR.png" width = "600" height = "400">
 
-##### (B) k-Nearest Neighbors (kNN)
+###### (B) k-Nearest Neighbors (kNN)
 An optimized kNN model was also built and assessed using the same steps as above.
 
 *The best parameters from the GridSearchCV were n_neighbors = 5, and weights = 'uniform'. The overall accuracy on the test set was 79.5%, which is marginally better than the Logistic Regression model.*
@@ -212,8 +212,8 @@ An optimized kNN model was also built and assessed using the same steps as above
 **Confusion matrix (kNN)**
 
 ```
-         0 Pred	1 Pred
-0 Actual	143	 22
+              0 Pred	1 Pred
+0 Actual	143	  22
 1 Actual	33	  70
 ```
 
@@ -221,7 +221,7 @@ An optimized kNN model was also built and assessed using the same steps as above
 
 <img src = "../img/ROC2.png" width = "600" height = "400">
 
-##### (C) SVM
+###### (C) SVM
 An optimized SVM model was also built and assessed using the same steps as above.
 
 *The best parameters from the GridSearchCV were kernel = rbf, and C = 1. The overall accuracy on the test set was 78.3%, which is marginally better than the Logistic Regression model.*
