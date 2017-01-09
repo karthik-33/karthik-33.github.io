@@ -8,6 +8,7 @@ I will explore a dataset about various characteristics of the passengers on the 
 
 ### Objective
 There are 2 main goals of this study:
+
 1. Understand which features affect survival
 2. Build Logistic Regression, kNN and SVM models to predict survival and assess their accuracy
 
@@ -17,6 +18,7 @@ There are 2 main goals of this study:
 
 ### Methodology
 Here's the rough order of steps I followed in arriving at answers to these questions:
+
 1. Data exploration
 2. Data visualization and correlations
 3. Data cleaning
@@ -25,6 +27,7 @@ Here's the rough order of steps I followed in arriving at answers to these quest
 
 ### (0) Data acquisition
 As part of Data Science Immersive bootcamp at General Assembly, the data from the Kaggle competition was made available to me in a PostgreSQL database stored on AWS. Here's a snippet of the code used to acquire the data and pull it into a Pandas dataframe:
+
 ```
 conn = psycopg2.connect("dbname='titanic' user='dsi_student' host='dsi.c20gkj5cvu3l.us-east-1.rds.amazonaws.com' password='xxxxx'")
 pd.read_sql("SELECT * FROM information_schema.tables", con = conn);
@@ -65,16 +68,21 @@ The "train" data contains 891 rows, with the following columns (descriptions fro
 The dataframe was exported into Tableau for visualization. Here are some observations:
 
 **Passengers in Classes 1 and 2 had a higher survival rate than passengers in Class 3**
+
 <img src="../img/Class.png" width="600" height="400">
 
 **The survival rate was the highest among the youngest and the oldest passengers (by age), even though they were a small fraction of the total number of passengers**
+
 <img src = "../img/Age_hist.png" width = "600" height = "400">
-<img src = "../img/Age.png" width = "600" height = "400">
+
+<img src = "../img/Age.png" width = "600" height = "500">
 
 **Females had a higher survival rate**
-<img src = "../img/Sex.png" width = "450" height = "200">
+
+<img src = "../img/Sex.png" width = "600" height = "400">
 
 **Passengers with small families or those who were single (family size = "parch" + "sibsp") had a higher survival rate than people with larger families**
+
 <img src = "../img/Family.png" width = "500" height = "300">
 
 ### (3) Data cleaning
@@ -82,7 +90,7 @@ The numerical features ("age", "fare", "SibSp" and "Parch") were all standardize
 
 ### (4, 5) Model building and optimization
 
-##### (A) Logistic regression
+###### (A) Logistic regression
 The first step was to split the dataset (which is the cleaned version of "train" table from the db, with the features chosen above) into training and test sets. (I only realized later that a separate "test" table was available from the database as well).
 
 ```
@@ -114,13 +122,16 @@ X_test_best = pd.DataFrame(data = X_test_RFECV, columns = X_test.columns[col])
 X_train_best.head(2)
 ```
 
-Next, the model was trained on the training set, and the features with the highest absolute coefficients were obtained. *The sex of the passenger and travel in passenger class 1 had the most impact on whether the passenger survived or not*.
+Next, the model was trained on the training set, and the features with the highest absolute coefficients were obtained.
+
+*The sex of the passenger and travel in passenger class 1 had the most impact on whether the passenger survived or not*.
 
 Next, the performance of the model on the test set was assessed using various tools: classification report, confusion matrix, and AUC ROC.
 
 **Classification report (LR)**
 
 *The model is better at predicting "not survived" (0) than "survived" (1). Baseline accuracy for "survived" class is ~38%, and model predicts ~72%.*
+
 ```
                 precision    recall  f1-score  support
           0       0.79      0.84      0.82       165
@@ -131,6 +142,7 @@ avg / total       0.77      0.77      0.77       268
 **Confusion matrix (LR, 0.5 threshold, accuracy)**
 
 *The overall accuracy of the model (139+67)/(139+67+26+36) is 76.8%*
+
 ```
          0 Pred	 1 Pred
 0 Actual	139	   26
@@ -140,6 +152,7 @@ avg / total       0.77      0.77      0.77       268
 **ROC curve (LR)**
 
 *While the model is not perfect, it seems to do a good job maximizing the true positive rate while minimizing the false positive rate, at a decision threshold of 0.5*
+
 ```
 from sklearn.metrics import roc_curve, roc_auc_score
 
@@ -153,26 +166,34 @@ plt.xlabel("False positive rate")
 plt.ylabel("True positive rate")
 plt.show()
 ```
+
 <img src = "../img/ROC1.png" width = "600" height = "400">
 
 As a test case, the performance of the model at a decision threshold of 0.9 was assessed via a confusion matrix. As expected from the ROC curve, while the false positive rate was reduced, the true positive rate was reduced as well because the number of false negatives increased.
 
 **Confusion matrix (LR, 0.9 threshold, accuracy)**
+
 ```
 y_pred_90 = [1 if y_prob[i][1] >= 0.9 else 0 for i in range(len(y_prob))]
 pd.DataFrame(data = confusion_matrix(y_test, y_pred_90), index = ["0 Actu", "1 Actu"], columns = ["0 Pred", "1 Pred"])
 ```
+
 ```
          0 Pred	 1 Pred
 0 Actual	164	   1
 1 Actual	82	    21
 ```
 
-Next, the logistic regression model was optimized using GridSearchCV to find the optimal penalty ("L1" or "L2) and regularization hyperparameter C. *The optimal penalty was L2, and the optimal C was 0.34. With these optimal parameters, the accuracy on the test set was still 76.9%, similar to what was obtained for the "unoptimized" logistic regression model.*
+Next, the logistic regression model was optimized using GridSearchCV to find the optimal penalty ("L1" or "L2) and regularization hyperparameter C.
 
-As another test case, the model was re-optimized using average precision as the scoring function instead of accuracy. The results are presented below. *There is almost no change in the results.*
+*The optimal penalty was L2, and the optimal C was 0.34. With these optimal parameters, the accuracy on the test set was still 76.9%, similar to what was obtained for the "unoptimized" logistic regression model.*
+
+As another test case, the model was re-optimized using average precision as the scoring function instead of accuracy. The results are presented below.
+
+*There was almost no change in the results.*
 
 **Confusion matrix (LR, 0.5 threshold, average_precision)**
+
 ```
           0 Pred	1 Pred
 0 Actual	138	  27
@@ -189,6 +210,7 @@ An optimized kNN model was also built and assessed using the same steps as above
 *kNN does reasonably well in this case because the number of features selected for the model (10) is small in comparison to the number of training examples (623). If the number of features were much higher, then kNN would tend to overfit, whereas logistic regression could still perform well if regularized.*
 
 **Confusion matrix (kNN)**
+
 ```
          0 Pred	1 Pred
 0 Actual	143	 22
@@ -196,6 +218,7 @@ An optimized kNN model was also built and assessed using the same steps as above
 ```
 
 **ROC curve (kNN)**
+
 <img src = "../img/ROC2.png" width = "600" height = "400">
 
 ##### (C) SVM
