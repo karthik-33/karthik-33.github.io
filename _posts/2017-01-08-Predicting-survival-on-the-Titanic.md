@@ -79,11 +79,11 @@ The dataframe was exported into Tableau for visualization. Here are some observa
 
 **Females had a higher survival rate**
 
-<img src = "../img/Sex.png" width = "550" height = "400">
+<img src = "../img/Sex.png" width = "500" height = "400">
 
 **Passengers with small families or those who were single (family size = "parch" + "sibsp") had a higher survival rate than people with larger families**
 
-<img src = "../img/Family.png" width = "550" height = "400">
+<img src = "../img/Family.png" width = "550" height = "350">
 
 ### (3) Data cleaning
 The numerical features ("age", "fare", "SibSp" and "Parch") were all standardized (*sklearn.preprocessing.scale*), and null values were removed. The categorical features ("Pclass", "Embarked", "Sex") were converted to dummy features (*pd.get_dummies*). Other categoricals like "PassengerId", "Name" and "Cabin" were presumed to not contain any additional useful information for model building, and were ignored. A new dataframe "Xt" with the cleaned numerical and categorical data was assembled, and the labels (1 = Survived, 0 = Not survived) were stored in a separate dataframe "y".
@@ -139,6 +139,7 @@ Next, the performance of the model on the test set was assessed using various to
 |**avg / total**|       0.77|      0.77|      0.77|       268|
 
 
+
 **Confusion matrix (LR, 0.5 threshold, accuracy)**
 
 *The overall accuracy of the model (139+67)/(139+67+26+36) is 76.8%*
@@ -147,6 +148,7 @@ Next, the performance of the model on the test set was assessed using various to
 |:---:|:---:|:---:|
 |**0 Actual**|	139|	    26|
 |**1 Actual**|	36|	    67|
+
 
 
 **ROC curve (LR)**
@@ -184,6 +186,7 @@ pd.DataFrame(data = confusion_matrix(y_test, y_pred_90), index = ["0 Actu", "1 A
 |**1 Actual**|	82|	    21|
 
 
+
 Next, the logistic regression model was optimized using GridSearchCV to find the optimal penalty ("L1" or "L2) and regularization hyperparameter C.
 
 *The optimal penalty was L2, and the optimal C was 0.34. With these optimal parameters, the accuracy on the test set was still 76.9%, similar to what was obtained for the "unoptimized" logistic regression model.*
@@ -211,10 +214,11 @@ An optimized kNN model was also built and assessed using the same steps as above
 
 **Confusion matrix (kNN)**
 
-| |0 Pred|	 1 Pred|
-|:---:|:---:|:---:|
-|**0 Actual**|	143|	    22|
-|**1 Actual**|	33|	    70|
+> | |0 Pred|	 1 Pred|
+> |:---:|:---:|:---:|
+> |**0 Actual**|	143|	    22|
+> |**1 Actual**|	33|	    70|
+
 
 
 **ROC curve (kNN)**
