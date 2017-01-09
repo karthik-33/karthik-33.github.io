@@ -132,11 +132,12 @@ Next, the performance of the model on the test set was assessed using various to
 
 *The model is better at predicting "not survived" (0) than "survived" (1). Baseline accuracy for "survived" class is ~38%, and model predicts ~72%.*
 
-|Label      |precision    |recall  |f1-score  |support|
-|:---:|:---:|:---:|:---:|:---:|
-|**0**|       0.79|      0.84|      0.82|       165|
-|**1**|       0.72|      0.65|      0.68|       103|
-|**avg / total**|       0.77|      0.77|      0.77|       268|
+> |Label      |precision    |recall  |f1-score  |support|
+> |:---:|:---:|:---:|:---:|:---:|
+> |**0**|       0.79|      0.84|      0.82|       165|
+> |**1**|       0.72|      0.65|      0.68|       103|
+> |**avg / total**|       0.77|      0.77|      0.77|       268|
+
 
 
 
@@ -144,10 +145,11 @@ Next, the performance of the model on the test set was assessed using various to
 
 *The overall accuracy of the model (139+67)/(139+67+26+36) is 76.8%*
 
-| |0 Pred|	 1 Pred|
-|:---:|:---:|:---:|
-|**0 Actual**|	139|	    26|
-|**1 Actual**|	36|	    67|
+> | |0 Pred|	 1 Pred|
+> |:---:|:---:|:---:|
+> |**0 Actual**|	139|	    26|
+> |**1 Actual**|	36|	    67|
+
 
 
 
@@ -180,10 +182,11 @@ y_pred_90 = [1 if y_prob[i][1] >= 0.9 else 0 for i in range(len(y_prob))]
 pd.DataFrame(data = confusion_matrix(y_test, y_pred_90), index = ["0 Actu", "1 Actu"], columns = ["0 Pred", "1 Pred"])
 ```
 
-| |0 Pred|	 1 Pred|
-|:---:|:---:|:---:|
-|**0 Actual**|	164|	    1|
-|**1 Actual**|	82|	    21|
+> | |0 Pred|	 1 Pred|
+> |:---:|:---:|:---:|
+> |**0 Actual**|	164|	    1|
+> |**1 Actual**|	82|	    21|
+
 
 
 
@@ -197,10 +200,11 @@ As another test case, the model was re-optimized using average precision as the 
 
 **Confusion matrix and Precision/Recall curve (LR, 0.5 threshold, average_precision)**
 
-| |0 Pred|	 1 Pred|
-|:---:|:---:|:---:|
-|**0 Actual**|	138|	    27|
-|**1 Actual**|	36|	    67|
+> | |0 Pred|	 1 Pred|
+> |:---:|:---:|:---:|
+> |**0 Actual**|	138|	    27|
+> |**1 Actual**|	36|	    67|
+
 
 
 <img src="../img/PR.png" width = "600" height = "400">
