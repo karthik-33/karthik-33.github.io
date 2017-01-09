@@ -14,7 +14,7 @@ There are 2 main goals of this study:
 
 ### Executive Summary
 1. Passengers traveling in higher classes, females, older and younger passengers, passengers traveling alone or with small families all had a higher survival rate
-2. The models built in this study are ~80% accurate in predicting passenger survival
+2. The models built in this study are ~75-80% accurate in predicting passenger survival and non-survival
 
 ### Methodology
 Here's the rough order of steps I followed in arriving at answers to these questions:
@@ -28,7 +28,7 @@ Here's the rough order of steps I followed in arriving at answers to these quest
 ### (0) Data acquisition
 As part of Data Science Immersive bootcamp at General Assembly, the data from the Kaggle competition was made available to me in a PostgreSQL database stored on AWS. Here's a snippet of the code used to acquire the data and pull it into a Pandas dataframe:
 
-```
+```python
 conn = psycopg2.connect("dbname='titanic' user='dsi_student' host='dsi.c20gkj5cvu3l.us-east-1.rds.amazonaws.com' password='xxxxx'")
 pd.read_sql("SELECT * FROM information_schema.tables", con = conn);
 df = pd.read_sql("SELECT * FROM train", con = conn)
@@ -83,7 +83,7 @@ The dataframe was exported into Tableau for visualization. Here are some observa
 
 **Passengers with small families or those who were single (family size = "parch" + "sibsp") had a higher survival rate than people with larger families**
 
-<img src = "../img/Family.png" width = "500" height = "300">
+<img src = "../img/Family.png" width = "600" height = "400">
 
 ### (3) Data cleaning
 The numerical features ("age", "fare", "SibSp" and "Parch") were all standardized (*sklearn.preprocessing.scale*), and null values were removed. The categorical features ("Pclass", "Embarked", "Sex") were converted to dummy features (*pd.get_dummies*). Other categoricals like "PassengerId", "Name" and "Cabin" were presumed to not contain any additional useful information for model building, and were ignored. A new dataframe "Xt" with the cleaned numerical and categorical data was assembled, and the labels (1 = Survived, 0 = Not survived) were stored in a separate dataframe "y".
@@ -93,7 +93,7 @@ The numerical features ("age", "fare", "SibSp" and "Parch") were all standardize
 ###### (A) Logistic regression
 The first step was to split the dataset (which is the cleaned version of "train" table from the db, with the features chosen above) into training and test sets. (I only realized later that a separate "test" table was available from the database as well).
 
-```
+```python
 # Train-test split
 from sklearn.cross_validation import train_test_split
 
@@ -102,7 +102,7 @@ X_train, X_test, y_train, y_test  = train_test_split(Xt, y, stratify = y, test_s
 
 Next, features for the logistic regression were selected using Recursive Feature Elimination with cross-validation (to avoid overfitting). 10 features were selected.
 
-```
+```python
 # Select features (for logistic regression) from training set using RFECV
 from sklearn.feature_selection import RFECV
 from sklearn.linear_model import LogisticRegression
@@ -132,7 +132,7 @@ Next, the performance of the model on the test set was assessed using various to
 
 *The model is better at predicting "not survived" (0) than "survived" (1). Baseline accuracy for "survived" class is ~38%, and model predicts ~72%.*
 
-```
+```python
                 precision    recall  f1-score  support
           0       0.79      0.84      0.82       165
           1       0.72      0.65      0.68       103
@@ -143,7 +143,7 @@ avg / total       0.77      0.77      0.77       268
 
 *The overall accuracy of the model (139+67)/(139+67+26+36) is 76.8%*
 
-```
+```python
               0 Pred	 1 Pred
 0 Actual	139	    26
 1 Actual	36	    67
@@ -153,7 +153,7 @@ avg / total       0.77      0.77      0.77       268
 
 *While the model is not perfect, it seems to do a good job maximizing the true positive rate while minimizing the false positive rate, at a decision threshold of 0.5*
 
-```
+```python
 from sklearn.metrics import roc_curve, roc_auc_score
 
 fpr, tpr, thresholds = roc_curve(y_test, model.decision_function(X_test_best))
@@ -173,12 +173,12 @@ As a test case, the performance of the model at a decision threshold of 0.9 was 
 
 **Confusion matrix (LR, 0.9 threshold, accuracy)**
 
-```
+```python
 y_pred_90 = [1 if y_prob[i][1] >= 0.9 else 0 for i in range(len(y_prob))]
 pd.DataFrame(data = confusion_matrix(y_test, y_pred_90), index = ["0 Actu", "1 Actu"], columns = ["0 Pred", "1 Pred"])
 ```
 
-```
+```python
               0 Pred	 1 Pred
 0 Actual	164	    1
 1 Actual	82	    21
@@ -194,7 +194,7 @@ As another test case, the model was re-optimized using average precision as the 
 
 **Confusion matrix and Precision/Recall curve (LR, 0.5 threshold, average_precision)**
 
-```
+```python
             0 Pred	1 Pred
 0 Actual	138	   27
 1 Actual	36	   67
@@ -211,7 +211,7 @@ An optimized kNN model was also built and assessed using the same steps as above
 
 **Confusion matrix (kNN)**
 
-```
+```python
               0 Pred	1 Pred
 0 Actual	143	  22
 1 Actual	33	  70
