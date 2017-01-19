@@ -34,7 +34,7 @@ Here's the rough order of steps I followed in arriving at answers to these quest
 
 The dataset contains 317 tracks by various artists/groups, with some artists/groups having multiple tracks. The track length, genre, date of entry, date of peak ranking, and weekly ranks for the 76 weeks since entry, are also included for each track. Rock seems to be predominant genre in this dataset. I added columns for number of weeks each track spent in top 100 during the 76 weeks, in addition to others to aid in analysis. Here's a snippet of the code I used to add this column:
 
-```
+```python
 # Find out the number of weeks each track has been on the billboard, and average rating for each track
 col_list = bb_100.columns
 col_list = col_list[7:-2]
@@ -73,7 +73,7 @@ Given the genre dependent trends observed above, I decided to run some t-tests o
 
 Here's the code I used to run the Welch's t-test:
 
-```
+```python
 # Create arrays with number of weeks data for each genre of interest
 rock = bb_100[bb_100["genre"] == "Rock"]["num_of_weeks"]
 country = bb_100[bb_100["genre"] == "Country"]["num_of_weeks"]

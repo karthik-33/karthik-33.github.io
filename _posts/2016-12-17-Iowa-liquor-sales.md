@@ -44,7 +44,7 @@ Here are a couple of aspects of the dataset that needed cleaning
 2. Additional data, such as total 2015 sales, 2015 Q1 sales, 2016 Q1 sales and average margin per transaction FOR EACH STORE were created
 3. The final data table (on which analysis was performed) contained the quantities calculated in step 2 above for each store, in addition to store location information (zipcode, city, county). There were 1143 rows (stores) in this data table.
 
-```
+```python
 # Find the first and last sales date.
 dates = df.groupby(by=["Store Number"], as_index=False)
 dates = dates.agg({"Date": [np.min, np.max]})
@@ -78,7 +78,7 @@ Here are a couple of observations from the cleaned dataset.
 
 I built a linear regression model with cross validation using scikit-learn, with only 2015 Q1 sales as a predictor of 2015 overall sales. The data was first split into training (70%) and test (30%) data sets, and then a model was fit using the training set. The performance of the model on new data was tested using a 6 fold cross-validation on the training set. Here's a code snippet and some results.  
 
-```
+```python
 # Cross-validation
 scores = cross_val_score(lm1, Xs_train, ys_train, cv = 6)
 predcv = cross_val_predict(lm1, Xs_train, ys_train, cv = 6)

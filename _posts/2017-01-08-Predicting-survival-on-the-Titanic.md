@@ -4,7 +4,7 @@ title: Predicting survival on the Titanic
 ---
 ### Introduction
 
-I will explore a dataset about various characteristics of the passengers on the ill-fated Titanic this week. A more comprehensive description of this dataset is available at [link](https://www.kaggle.com/c/titanic "Titanic Competition") and [link](https://www.kaggle.com/c/titanic/data "Titanic Data Description").
+I will explore a dataset about various characteristics of the passengers on the ill-fated Titanic this week. A more comprehensive description of this dataset is available at https://www.kaggle.com/c/titanic and https://www.kaggle.com/c/titanic/data.
 
 ### Objective
 There are 2 main goals of this study:
