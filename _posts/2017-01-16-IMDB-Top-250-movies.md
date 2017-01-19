@@ -29,7 +29,7 @@ Here's the rough order of steps I followed in arriving at answers to these quest
 ### (1) Data scraping
 A table of the Top 250 movies was obtained directly from IMDB (http://www.imdb.com/chart/top) using Pandas. The movie names and year were extracted from the table using Regular Expressions, and the characteristics of each movie (runtime, genre, number of Oscars etc.) were obtained using the OMDB API (http://www.omdbapi.com/). Here's a snippet of the code used for this:
 
-```python
+> ```python
 # Get Top 250 movie table
 df_aslist = (pd.read_html(url, attrs = {'class': 'chart full-width'}))
 df = df_aslist[0]
@@ -43,13 +43,13 @@ for i, t in enumerate(title):
     response.append(requests.get("http://www.omdbapi.com/?t="+t+"&type=movie&y="+year[i]).text)
 data = "[" + (",".join(response)) + "]"
 movie = pd.read_json(data, orient = "records")
-```
+> ```
 
 Here's a snapshot of the dataframe available after this step (not all columns displayed).
 
-|Actors|	Awards|	Country|	Director|	Genre|	Language|	Runtime	|Title	|Writer	|Year	|imdbID|	imdbRating|	imdbVotes|
-|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-|Tim Robbins, Morgan Freeman, Bob Gunton, Willi...|Nominated for 7 Oscars. Another 19 wins & 30 n...|USA|Frank Darabont|Crime, Drama|English|142 min|The Shawshank Redemption|Frank Darabont|1994.0|tt0111161|9.3|1,754,270|
+> |Actors|	Awards|	Country|	Director|	Genre|	Language|	Runtime	|Title	|Writer	|Year	|imdbID|	imdbRating|	imdbVotes|
+> |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+> |Tim Robbins, Morgan Freeman, Bob Gunton, Willi...|Nominated for 7 Oscars. Another 19 wins & 30 n...|USA|Frank Darabont|Crime, Drama|English|142 min|The Shawshank Redemption|Frank Darabont|1994.0|tt0111161|9.3|1,754,270|
 
 ### (2) Data wrangling and feature engineering
 
@@ -156,7 +156,7 @@ def gs_model(model, name, X_train, X_test, y_train, y_test):
     make_plot(y_test, y_pred, name)
 ```
 
-The following show the performance of these models. It's clear that an optimized base decision tree does not do well in predicting ratings, but the ensemble techniques (Random Forest and Gradient Boosting) greatly improve performance.
+The following charts show the performance of these models. It's clear that an optimized base decision tree does not do well in predicting ratings, but the ensemble techniques (Random Forest and Gradient Boosting) greatly improve performance.
 
 <img src = "../img/gs_dt.png" width = "500" height = "400">
 
@@ -166,25 +166,25 @@ The following show the performance of these models. It's clear that an optimized
 
 The MSE and R2 for all these models is shown below. The optimized Random Forest performs the best in this group.
 
-|Method|MSE|R2 (predicted vs actual)|
-|:----|:----:|:----:|
-|Decision Tree|0.043|-0.013|
-|GS Decision Tree|0.041|0.048|
-|Random Forest|0.031|0.28|
-|**GS Random Forest**|**0.028**|**0.34**|
-|ExtraTrees|0.031|0.28|
-|Gradient Boosting|0.029|0.32|
-|GS Gradient Boosting|0.029|0.32|
+> |Method|MSE|R2 (predicted vs actual)|
+> |:----|:----:|:----:|
+> |Decision Tree|0.043|-0.013|
+> |GS Decision Tree|0.041|0.048|
+> |Random Forest|0.031|0.28|
+> |**GS Random Forest**|**0.028**|**0.34**|
+> |ExtraTrees|0.031|0.28|
+> |Gradient Boosting|0.029|0.32|
+> |GS Gradient Boosting|0.029|0.32|
 
 The feature importances from the Random Forest model show that votes and runtime are the top 2 features for predicting ratings, as observed during data exploration.
 
-|feature|importance    |
-|:---:|:---:|
-|votes  |      0.611595|
-|time   |      0.072505|
-|1950s   |     0.033383|
-|english  |    0.027293|
-|oscar n/w |   0.026068|
+> |feature|importance    |
+> |:---:|:---:|
+> |votes  |      0.611595|
+> |time   |      0.072505|
+> |1950s   |     0.033383|
+> |english  |    0.027293|
+> |oscar n/w |   0.026068|
 
 ### Next steps
 
