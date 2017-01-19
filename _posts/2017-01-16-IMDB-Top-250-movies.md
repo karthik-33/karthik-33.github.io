@@ -29,7 +29,7 @@ Here's the rough order of steps I followed in arriving at answers to these quest
 ### (1) Data scraping
 A table of the Top 250 movies was obtained directly from IMDB (http://www.imdb.com/chart/top) using Pandas. The movie names and year were extracted from the table using Regular Expressions, and the characteristics of each movie (runtime, genre, number of Oscars etc.) were obtained using the OMDB API (http://www.omdbapi.com/). Here's a snippet of the code used for this:
 
-> ```python
+```python
 # Get Top 250 movie table
 df_aslist = (pd.read_html(url, attrs = {'class': 'chart full-width'}))
 df = df_aslist[0]
@@ -43,13 +43,13 @@ for i, t in enumerate(title):
     response.append(requests.get("http://www.omdbapi.com/?t="+t+"&type=movie&y="+year[i]).text)
 data = "[" + (",".join(response)) + "]"
 movie = pd.read_json(data, orient = "records")
-> ```
+```
 
 Here's a snapshot of the dataframe available after this step (not all columns displayed).
 
-> |Actors|	Awards|	Country|	Director|	Genre|	Language|	Runtime	|Title	|Writer	|Year	|imdbID|	imdbRating|	imdbVotes|
+> |Actors|	Awards|	Genre|	Runtime	|Title	|Year	|imdbRating|	imdbVotes|
 > |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-> |Tim Robbins, Morgan Freeman, Bob Gunton, Willi...|Nominated for 7 Oscars. Another 19 wins & 30 n...|USA|Frank Darabont|Crime, Drama|English|142 min|The Shawshank Redemption|Frank Darabont|1994.0|tt0111161|9.3|1,754,270|
+> |Tim Robbins, Morgan Freeman, Bob Gunton, Willi...|Nominated for 7 Oscars. Another 19 wins & 30 n...|Crime, Drama|142 min|The Shawshank Redemption|1994.0|9.3|1,754,270|
 
 ### (2) Data wrangling and feature engineering
 
