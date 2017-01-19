@@ -92,7 +92,7 @@ print("R2_model_train: {}, R2_cv: {}".format(R2_model, R2_cv_scores))
 print("rmse_model_train: {}, rmse_cv: {}".format(rmse_model, rmse_cv))
 ```
 
-> **[ 0.925  0.974   0.850  0.961  0.929  0.972]**
+> **Cross-val scores: [0.925  0.974   0.850  0.961  0.929  0.972]**
 
 > **R2_model_train: 0.962, R2_cv: 0.935**
 
