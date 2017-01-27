@@ -32,7 +32,7 @@ Here's the rough order of steps I followed in arriving at answers to these quest
 
 The data was first imported into Python using Pandas to see what data was available in each file, and then exported into a Postgres SQL server running on my machine.
 
-```Python
+```python
 # Write all files to local PostgreSQL DB
 from sqlalchemy import create_engine
 engine = create_engine('postgresql+psycopg2://postgres:****@localhost/FAA')
@@ -47,7 +47,7 @@ The cancellations data set contained data exclusively related to the target (del
 
 There were no null values in the resulting dataframe, so this was a relatively clean dataset.
 
-```Python
+```python
 # Get coordinates from airports table, and add to operations table
 conn = psycopg2.connect("dbname = FAA host = localhost user = postgres password = ****")
 query = '''SELECT o.*, a."Latitude", a."Longitude", a."STATE"  
@@ -80,27 +80,27 @@ Here are a couple of observations:
 
 **The median on-time departure rate (across all airports) was fairly steady between 2004-2014**
 
-<img src = "../img/dep_t.png" width = "500" height = "400">
+<img src = "../img/dep_t.png" width = "500" height = "300">
 
 **The worst airports (in terms of % on-time departures) in the continental USA seem to be in the some of the busiest airspaces in the continental USA (NY, LA, Chicago and Atlanta areas)**
 
 **Year 2004**
 
-<img src = "../img/map_2004_1.png" width = "850" height = "300">
+<img src = "../img/map_2004_1.png" width = "850" height = "400">
 
 **Year 2009**
 
-<img src = "../img/map_2009_1.png" width = "850" height = "300">
+<img src = "../img/map_2009_1.png" width = "850" height = "400">
 
 **Year 2014**
 
-<img src = "../img/map_2014_1.png" width = "850" height = "300">
+<img src = "../img/map_2014_1.png" width = "850" height = "400">
 
 **Along the larger airports, Newark (EWR) in particular had a mixed performance over the years, despite not much change in flight volume (Note: all times are in minutes)**
 
-<img src = "../img/ewr.png" width = "700" height = "400">
+<img src = "../img/ewr.png" width = "700" height = "350">
 
-<img src = "../img/ewr_stats.png" width = "300" height = "400">
+<img src = "../img/ewr_stats.png" width = "300" height = "500">
 
 ### (4) PCA
 
@@ -142,18 +142,18 @@ Here are the results for 2004:
 
 **It's also clear that number of departures is a significant 'component' of principal component 1 (eigenvector strongly determined by number of departures), as seen from a comparison of the 2 plots below. The other principal component is probably composed mainly of the operational delay metrics.**
 
-<img src = "../img/2004_pca_1.png" width = "500" height = "400">
+<img src = "../img/2004_pca_1.png" width = "600" height = "400">
 
-<img src = "../img/2004_real.png" width = "500" height = "400">
+<img src = "../img/2004_real.png" width = "600" height = "400">
 
 Here are the corresponding results for 2009:
 
 <img src = "../img/2009_ev.png" width = "500" height = "400">
 
-<img src = "../img/2009_pca.png" width = "500" height = "400">
+<img src = "../img/2009_pca.png" width = "600" height = "400">
 
 And 2014:
 
 <img src = "../img/2014_ev.png" width = "500" height = "400">
 
-<img src = "../img/2014_pca.png" width = "500" height = "400">
+<img src = "../img/2014_pca.png" width = "600" height = "400">
