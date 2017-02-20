@@ -23,9 +23,10 @@ Here's a picture of a typical tube assembly that is used to pneumatically contro
 
 ### Report Organization
 
-I will present some key steps and results in this post. A detailed presentation covering all the points listed above is embedded below.
+I will present some key steps and results in this post. A detailed presentation covering all the aspects discussed above, is embedded below.
 
 <iframe src="https://docs.google.com/presentation/d/1jpCPkjW-sk4r_l6AxI9EhsrLrWN2eNglmKz-K3gM_Gw/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="299" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
 
 ### Executive Summary
 
