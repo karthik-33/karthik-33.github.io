@@ -19,7 +19,7 @@ d) Understand the main factors that drive pricing, and present recommendations b
 
 Here's a picture of a typical tube assembly that is used to pneumatically control various operations in Caterpillar's mining and construction equipment.
 
-<img src = "../img/tube1.png">
+<img src = "../img/tube1.png" width = "75%">
 
 ### Report Organization
 
