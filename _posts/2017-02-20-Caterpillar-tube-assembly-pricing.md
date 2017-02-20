@@ -23,13 +23,13 @@ Here's a picture of a typical tube assembly that is used to pneumatically contro
 
 ### Report Organization
 
-I will present some key steps and results in this post. A detailed presentation covering all the points listed above is hosted on slideshare, and embedded below.
+I will present some key steps and results in this post. A detailed presentation covering all the points listed above is embedded below.
 
-<iframe src="//www.slideshare.net/slideshow/embed_code/key/8uSORsIg26t0lh" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/KarthikVenkataraman11/kaggle-caterpillar-tube-assembly-pricing" title="Kaggle Caterpillar tube assembly pricing" target="blank"></a> </strong></div>
+<iframe src="https://docs.google.com/presentation/d/1jpCPkjW-sk4r_l6AxI9EhsrLrWN2eNglmKz-K3gM_Gw/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="299" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 ### Executive Summary
 
-Quoted price is a strongly non-linear function of various factors.
+Quoted price is a strong non-linear function of various factors.
 1. Order quantity is the most significant factor affecting quoted price
 2. Tube assembly diameter and length are important predictors of price, are likely a proxy for amount of material used in building tube assemblies
 3. Annual usage (per tube assembly), total annual usage (per supplier) and the length of time Caterpillar has had a relationship with supplier, all play a role in price
@@ -42,7 +42,7 @@ Price is strongly dependent on quantity ordered.
 
 <img src = "../img/qty.png">
 
-Certain component types (ex. CP-028 - straight adapter) are predominantly present in higher quantities in lower priced assemblies.
+Certain component types (ex. CP-028 - straight adapter) are predominantly present in greater numbers in lower priced assemblies.
 
 <img src = "../img/cp28.png">
 
@@ -62,7 +62,7 @@ Feature importances from an optimized xgboost model are shown below.
 
 I want to briefly discuss some learnings from planning and executing this project.
 
-Firstly, coming up with a methodical high-level plan of attack really helped. Without this, it would have been easy to get lost in the weeds of EDA, model building or optimization without making timely progress. It also helped to set clear lower and upper bounds for model performance targets. Any model that performs worse than the lower bound is useless. And the upper bound helps guide decision-making along the way - for ex. is it worth spending more time on model optimization.
+Firstly, coming up with a methodical high-level plan of attack really helped. Without this, it would have been easy to get lost in the weeds of EDA, model building or optimization without making timely progress. It also helped to set clear lower and upper bounds for model performance targets. Any model that performs worse than the lower bound is useless. And the upper bound helps guide decision-making along the way - for ex. would the model get any better if additional time is spent on model optimization.
 
 <img src = "../img/methodology.svg">
 
