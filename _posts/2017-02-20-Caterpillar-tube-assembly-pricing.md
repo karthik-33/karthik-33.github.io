@@ -23,7 +23,7 @@ Here's a picture of a typical tube assembly that is used to pneumatically contro
 
 ### Report Organization
 
-I will present some key steps and results in this post. A detailed presentation covering all the points listed above is hosted on slideshare, at the link below.
+I will present some key steps and results in this post. A detailed presentation covering all the points listed above is hosted on slideshare, and embedded below.
 
 <iframe src="//www.slideshare.net/slideshow/embed_code/key/8uSORsIg26t0lh" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/KarthikVenkataraman11/kaggle-caterpillar-tube-assembly-pricing" title="Kaggle Caterpillar tube assembly pricing" target="blank"></a> </strong></div>
 
