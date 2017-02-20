@@ -40,23 +40,23 @@ Quoted price is a strong non-linear function of various factors.
 
 Price is strongly dependent on quantity ordered.
 
-<img src = "../img/qty.png">
+<img src = "../img/qty.png" width = "75%">
 
 Certain component types (ex. CP-028 - straight adapter) are predominantly present in greater numbers in lower priced assemblies.
 
-<img src = "../img/cp28.png">
+<img src = "../img/cp28.png" width = "75%">
 
 Parts with higher wall thickness (= more material) seem to be priced higher.
 
-<img src = "../img/wall.png">
+<img src = "../img/wall.png" width = "75%">
 
 An Extreme Gradient Boosting (xgboost) model performs very well with the right features (note: R2 refers to the fit between predicted and actual costs)
 
-<img src = "../img/model_results.svg">
+<img src = "../img/model_results.svg" width = "75%">
 
 Feature importances from an optimized xgboost model are shown below.
 
-<img src = "../img/xgb_fi.svg">
+<img src = "../img/xgb_fi.svg" width = "75%">
 
 ### Discussion
 
@@ -64,16 +64,16 @@ I want to briefly discuss some learnings from planning and executing this projec
 
 Firstly, coming up with a methodical high-level plan of attack really helped. Without this, it would have been easy to get lost in the weeds of EDA, model building or optimization without making timely progress. It also helped to set clear lower and upper bounds for model performance targets. Any model that performs worse than the lower bound is useless. And the upper bound helps guide decision-making along the way - for ex. would the model get any better if additional time is spent on model optimization.
 
-<img src = "../img/methodology.svg">
+<img src = "../img/methodology.svg" width = "75%">
 
-<img src = "../img/bounds.svg">
+<img src = "../img/bounds.svg" width = "75%">
 
 Secondly, thinking through the lens of cost breakdowns from the supplier's perspective helped formulate key hypotheses to explore. It not only helped to articulate hypotheses to test during EDA, but was also instrumental in engineering the right features for a good predictive model. (Note: VC is variable cost, FC is fixed cost, M is margin in the images below)
 
-<img src = "../img/hypothesis1.svg">
+<img src = "../img/hypothesis1.svg" width = "75%">
 
-<img src = "../img/hypothesis2.svg">
+<img src = "../img/hypothesis2.svg" width = "75%">
 
-<img src = "../img/hypothesis3.svg">
+<img src = "../img/hypothesis3.svg" width = "75%">
 
 Lastly, from a model building and optimization perspective, log transformation of the target variable (price) really helped in building a better nonlinear model. It was also important to realize that using a linear combination of features as inputs (i.e. PCA), and scaling the data prior to model fitting actually hurt model performance in this case. In the case of scaling, this could be due to potentially 'smoothing' out any non-linearities by transforming to a scaled feature space. In the case of PCA, using a linear combinations of features may have resulted in choosing the wrong features to combine non-linearly in the model.
