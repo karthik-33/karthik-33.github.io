@@ -6,7 +6,7 @@ title: Hello, world
 <img src = "/img/kv_pic4.JPG" height = "225" width = "300">
 
 
-This is my first blog post, ever. I was told that blogging about my data science projects (aka "building a portfolio") would be a good way to show work examples to prospective employers. I suppose that sounds reasonable, so here I am.
+This is my first blog post, ever. I want to talk about some recent data science related projects and exercises that I've been doing on this blog.
 
 ### Background
 
@@ -14,7 +14,7 @@ I am a PhD Chemical Engineer from the University of Minnesota, where my thesis w
 
 I've always been interested in math and chemistry, so chemical engineering was a natural area of study for me. But exposure to stats and Six Sigma during my GE days, and seeing tons of manufacturing data at GE and QDV go to 'waste' for lack of proper tools to mine insights from, led me to add data science skills to my toolkit. I started with self-learning through JHU and Andrew Ng's offerings on Coursera, and then moved to a formal 12-week full-time Data Science Immersive program at General Assembly Boston.
 
-I hope to leverage my domain knowledge and industry experiences to now apply these skills. Broad areas of interest are chemicals/materials, renewable energy, robotics, advanced manufacturing and biotech. 
+I hope to leverage my domain knowledge and industry experiences to now apply these skills. Broad areas of interest are chemicals/materials, renewable energy, robotics, advanced manufacturing and biotech.
 
 ### Writing style
 
