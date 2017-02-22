@@ -3,7 +3,7 @@ layout: post
 title: Hello, world
 ---
 
-<img src = "../img/kv_pic4.JPG" height = "150" width = "200">
+<img src = "/img/kv_pic4.JPG" height = "150" width = "200">
 
 
 This is my first blog post, ever. I was told that blogging about my data science projects (aka "building a portfolio") would be a good way to show work examples to prospective employers. I suppose that sounds reasonable, so here I am.
