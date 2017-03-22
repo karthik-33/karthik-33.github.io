@@ -3,11 +3,11 @@ layout: post
 title: Interactive Tableau visualizations
 ---
 
-I wanted to post a couple of interactive Tableau charts from previous projects here, both to check out what interactive features are available, and to provide additional insights. The mechanics for accomplishing this are fairly straightforward - save the worksheet to "Tableau Public" using the "Server" dropdown menu on the Tableau Desktop program, and use the shareable link provided on <a href="https://public.tableau.com"><font color="008000"><b>Tableau Public</b></font></a> to embed the chart in the blog post using an ```<iframe>``` tag.
+I wanted to post a couple of interactive Tableau charts from previous projects here, both to check out what interactive features are available, and to provide additional insights. The mechanics for accomplishing this are fairly straightforward - save the worksheet to "Tableau Public" using the "Server" dropdown menu on the Tableau Desktop program, and use the shareable link provided on <a href="https://public.tableau.com"><font color="008000"><b>Tableau Public</b></font></a> to embed the chart in the blog post using an ```<iframe>``` tag, as shown below.
 
 ```html
 <iframe src="https://public.tableau.com/views/airport_delays/map_2014?:showVizHome=no&:embed=true"
-width="900" height="600"></iframe>
+width="900" height="600" frameborder = "0"></iframe>
 ```
 
 #### Airport delays
